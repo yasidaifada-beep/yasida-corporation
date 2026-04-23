@@ -1,0 +1,103 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // 0. Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // --- Helpers ---
+    
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerified() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    function isAdmin() {
+      return isVerified() && (request.auth.token.email == 'pramukapattimura@gmail.com' || request.auth.token.email == 'min8ciamis@gmail.com' || request.auth.token.email == 'yasidaifada@gmail.com');
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // --- Validation Blueprints ---
+
+    function isValidProduct(data) {
+      return data.keys().hasAll(['name', 'grade', 'moisture', 'purity']) &&
+             data.keys().size() <= 10 &&
+             data.name is string && data.name.size() > 0 && data.name.size() <= 100 &&
+             data.grade is string && data.grade.size() <= 50 &&
+             data.moisture is string && data.moisture.size() <= 50 &&
+             data.purity is string && data.purity.size() <= 50;
+    }
+
+    function isValidInquiry(data) {
+      return data.keys().hasAll(['fullName', 'companyName', 'email', 'type', 'message', 'createdAt', 'status']) &&
+             data.keys().size() == 7 &&
+             data.fullName is string && data.fullName.size() <= 100 &&
+             data.companyName is string && data.companyName.size() <= 100 &&
+             data.email is string && data.email.size() <= 100 &&
+             data.type is string && data.type.size() <= 100 &&
+             data.message is string && data.message.size() <= 5000 &&
+             data.createdAt == request.time &&
+             data.status == 'new';
+    }
+
+    // --- Collection Routes ---
+
+    match /products/{productId} {
+      allow get: if true;
+      allow list: if true;
+      
+      allow create: if isAdmin() && isValidId(productId) && isValidProduct(incoming());
+      
+      allow update: if isAdmin() && isValidProduct(incoming()) && (
+        incoming().diff(existing()).affectedKeys().hasOnly(['name', 'scientificName', 'grade', 'moisture', 'purity', 'packaging', 'capacity', 'updatedAt'])
+      );
+      
+      allow delete: if isAdmin();
+    }
+
+    match /inquiries/{inquiryId} {
+      // Only admin can read/list/delete inquiries (PII isolation)
+      allow get, list, delete: if isAdmin();
+      
+      // Anyone can create an inquiry, but it must be valid
+      allow create: if isValidId(inquiryId) && isValidInquiry(incoming());
+      
+      // Admin might update status
+      allow update: if isAdmin() && (
+        incoming().diff(existing()).affectedKeys().hasOnly(['status']) &&
+        incoming().status in ['new', 'replied', 'closed']
+      );
+    }
+
+    match /slides/{slideId} {
+      allow read, list: if true;
+      allow write: if isAdmin();
+    }
+
+    match /settings/{settingId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Test connection doc used in initialization
+    match /test/connection {
+      allow get: if true;
+    }
+  }
+}

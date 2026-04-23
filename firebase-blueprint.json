@@ -1,0 +1,77 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Product details for Javanese Long Pepper varieties",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "scientificName": { "type": "string" },
+        "grade": { "type": "string" },
+        "moisture": { "type": "string" },
+        "purity": { "type": "string" },
+        "packaging": { "type": "string" },
+        "capacity": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "grade", "moisture", "purity"]
+    },
+    "Inquiry": {
+      "title": "Inquiry",
+      "description": "B2B Lead inquiries from the contact form",
+      "type": "object",
+      "properties": {
+        "fullName": { "type": "string" },
+        "companyName": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "type": { "type": "string" },
+        "message": { "type": "string" },
+        "status": { "type": "string", "enum": ["new", "replied", "closed"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["fullName", "email", "message"]
+    },
+    "Slide": {
+      "title": "Slide",
+      "description": "Hero slider content and images",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "image": { "type": "string" },
+        "accent": { "type": "string" },
+        "order": { "type": "number" }
+      },
+      "required": ["title", "description", "image"]
+    },
+    "Setting": {
+      "title": "Setting",
+      "description": "Global website settings and links",
+      "type": "object",
+      "properties": {
+        "videoUrl": { "type": "string" },
+        "instagram": { "type": "string" },
+        "facebook": { "type": "string" },
+        "youtube": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Collection of products offered"
+    },
+    "/inquiries/{inquiryId}": {
+      "schema": "Inquiry",
+      "description": "Collection of customer inquiries"
+    },
+    "/slides/{slideId}": {
+      "schema": "Slide",
+      "description": "Hero slider items"
+    },
+    "/settings/{settingId}": {
+      "schema": "Setting",
+      "description": "Global config documents"
+    }
+  }
+}
