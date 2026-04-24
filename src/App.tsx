@@ -179,10 +179,10 @@ const Navbar = ({ currentPage, setPage, user, t }: { currentPage: Page, setPage:
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           <div className="flex items-center cursor-pointer gap-3" onClick={() => setPage('home')}>
-            <img src="https://photos.fife.usercontent.google.com/pw/AP1GczNCeb_D4qGRaED3LbpEy5asljqrJxOukS9FoLII5CyyxYDNUv-Ci5W6=w1162-h633-s-no-gm?authuser=0" alt="Yasida Logo" className="h-12 w-auto object-contain" referrerPolicy="no-referrer" />
+            <img src="/src/logo.png" alt="Yasida Logo" className="h-12 w-auto object-contain" onError={(e) => (e.currentTarget.style.display = 'none')} />
             <div className="flex flex-col leading-tight">
               <span className="text-xl font-serif font-bold tracking-tighter text-emerald-900">YASIDA</span>
-              <span className="text-xl font-serif font-light text-stone-500">CORPORATION</span>
+              <span className="text-[10px] font-serif font-light text-stone-500">CORPORATION</span>
             </div>
           </div>
 
@@ -267,7 +267,7 @@ const Navbar = ({ currentPage, setPage, user, t }: { currentPage: Page, setPage:
   );
 };
 
-const Footer = ({ setPage, settings, t }: { setPage: (p: Page) => void, settings: any, t: any }) => {
+const Footer = ({ setPage, settings }: { setPage: (p: Page) => void, settings: any }) => {
   return (
     <footer className="bg-stone-900 text-stone-300 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -278,7 +278,7 @@ const Footer = ({ setPage, settings, t }: { setPage: (p: Page) => void, settings
               <span className="text-2xl font-serif font-light text-stone-500 ml-1">CORPORATION</span>
             </div>
             <p className="text-sm leading-relaxed text-stone-400 mb-8">
-              {t.premium_grade_desc}
+              Under YASIDA CORPORATION, Nusantara Pepper is Indonesia's leading supplier of premium Javanese Long Pepper. Bridging traditional heritage with international standard excellence.
             </p>
             <div className="flex gap-4">
               {settings?.facebook && (
@@ -299,16 +299,16 @@ const Footer = ({ setPage, settings, t }: { setPage: (p: Page) => void, settings
             </div>
           </div>
           <div>
-            <h4 className="text-white font-medium mb-6">{t.quick_links}</h4>
+            <h4 className="text-white font-medium mb-6">Quick Links</h4>
             <ul className="space-y-4 text-sm">
-              <li className="cursor-pointer hover:text-white" onClick={() => setPage('about')}>{t.about}</li>
-              <li className="cursor-pointer hover:text-white" onClick={() => setPage('products')}>{t.products}</li>
-              <li className="cursor-pointer hover:text-white" onClick={() => setPage('export')}>{t.export}</li>
-              <li className="cursor-pointer hover:text-white" onClick={() => setPage('contact')}>{t.inquiry}</li>
+              <li className="cursor-pointer hover:text-white" onClick={() => setPage('about')}>About Us</li>
+              <li className="cursor-pointer hover:text-white" onClick={() => setPage('products')}>Our Products</li>
+              <li className="cursor-pointer hover:text-white" onClick={() => setPage('export')}>Export Terms</li>
+              <li className="cursor-pointer hover:text-white" onClick={() => setPage('contact')}>Contact</li>
             </ul>
           </div>
           <div>
-            <h4 className="text-white font-medium mb-6">{t.certificates}</h4>
+            <h4 className="text-white font-medium mb-6">Certificates</h4>
             <ul className="space-y-4 text-sm">
               <li className="flex items-center gap-2"><Award size={16} className="text-emerald-500" /> Phytosanitary Certified</li>
               <li className="flex items-center gap-2"><Award size={16} className="text-emerald-500" /> Origin Verification</li>
@@ -316,7 +316,7 @@ const Footer = ({ setPage, settings, t }: { setPage: (p: Page) => void, settings
             </ul>
           </div>
           <div>
-            <h4 className="text-white font-medium mb-6">{t.connect}</h4>
+            <h4 className="text-white font-medium mb-6">Connect</h4>
             <div className="flex flex-col space-y-4 text-sm">
               <div className="flex items-start gap-3">
                 <MapPin size={18} className="text-emerald-500 shrink-0" />
@@ -334,7 +334,7 @@ const Footer = ({ setPage, settings, t }: { setPage: (p: Page) => void, settings
           </div>
         </div>
         <div className="mt-16 pt-8 border-t border-stone-800 text-xs text-stone-500 text-center">
-          © {new Date().getFullYear()} Yasida Corporation. All rights reserved.
+          © {new Date().getFullYear()} Nusantara Long Pepper. All rights reserved. Registered Export Supplier ID: ID-JX-0988.
         </div>
       </div>
     </footer>
