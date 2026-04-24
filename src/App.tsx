@@ -24,6 +24,7 @@ import {
   LayoutDashboard,
   MessageSquare,
   MessageCircle,
+  Eye,
   Package,
   CheckCircle,
   Clock,
@@ -110,6 +111,7 @@ const translations = {
     partnership_desc: "For volume inquiries, sample requests, or technical questionnaires, please fill out the form below. Our export desk will contact you within 24 business hours.",
     sending: "Sending...",
     send_inquiry: "Send Inquiry",
+    success_message: "Thank you, we will respond by replying to your email.",
     language: "Website Language",
     en_lang: "English",
     id_lang: "Indonesia"
@@ -155,6 +157,7 @@ const translations = {
     partnership_desc: "Untuk pertanyaan volume, permintaan sampel, atau kuesioner teknis, silakan isi formulir di bawah ini. Meja ekspor kami akan menghubungi Anda dalam waktu 24 jam kerja.",
     sending: "Mengirim...",
     send_inquiry: "Kirim Pertanyaan",
+    success_message: "Terima kasih, kami akan merespon dengan membalas pada email anda.",
     language: "Bahasa Situs Web",
     en_lang: "Inggris",
     id_lang: "Indonesia"
@@ -798,6 +801,7 @@ const Contact = ({ t }: { t: any }) => {
       });
       setSent(true);
       setFormData({ fullName: '', companyName: '', email: '', type: 'Trial Sample Shipment', message: '' });
+      setTimeout(() => setSent(false), 8000);
     } catch (error) {
       handleFirestoreError(error, 'create', 'inquiries');
     } finally {
@@ -842,7 +846,7 @@ const Contact = ({ t }: { t: any }) => {
                 >
                   <CheckCircle size={64} className="mb-6" />
                   <h3 className="text-3xl font-serif mb-4">Inquiry Received</h3>
-                  <p className="text-emerald-100 mb-8">Our team has received your request. We will review your requirements and reach out to your work email shortly.</p>
+                  <p className="text-emerald-100 mb-8">{t.success_message}</p>
                   <button onClick={() => setSent(false)} className="px-8 py-3 bg-white text-emerald-900 font-bold rounded-lg hover:bg-emerald-50">
                     Send Another
                   </button>
@@ -965,6 +969,7 @@ const Dashboard = ({ settings }: { settings: any }) => {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'inquiries' | 'slides' | 'settings'>('inquiries');
   const [editingSlide, setEditingSlide] = useState<any>(null);
+  const [viewingInquiry, setViewingInquiry] = useState<InquiryData | null>(null);
   const [localSettings, setLocalSettings] = useState(settings);
 
   useEffect(() => {
@@ -1120,10 +1125,18 @@ const Dashboard = ({ settings }: { settings: any }) => {
                         <option value="closed">Closed</option>
                       </select>
                     </td>
-                    <td className="px-6 py-6 text-right">
+                    <td className="px-6 py-6 text-right flex justify-end gap-2">
+                      <button 
+                        onClick={() => setViewingInquiry(item)}
+                        className="text-stone-400 hover:text-emerald-600 p-2 transition-colors"
+                        title="View Full Inquiry"
+                      >
+                        <Eye size={18} />
+                      </button>
                       <button 
                         onClick={() => deleteInquiry(item.id!)}
                         className="text-stone-300 hover:text-red-500 p-2 transition-colors"
+                        title="Delete Permanently"
                       >
                         <X size={18} />
                       </button>
@@ -1257,6 +1270,87 @@ const Dashboard = ({ settings }: { settings: any }) => {
                   <button type="button" onClick={() => setEditingSlide(null)} className="flex-1 py-3 border border-stone-200 rounded font-medium">Cancel</button>
                 </div>
               </form>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Inquiry Detail Modal */}
+      <AnimatePresence>
+        {viewingInquiry && (
+          <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setViewingInquiry(null)} className="absolute inset-0 bg-stone-900/60 backdrop-blur-sm" />
+            <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }} className="bg-white w-full max-w-2xl rounded-3xl p-10 relative z-10 shadow-2xl overflow-y-auto max-h-[90vh]">
+              <div className="flex justify-between items-start mb-8">
+                <div>
+                  <span className="inline-block px-2 py-1 bg-emerald-50 text-emerald-800 text-[10px] font-bold rounded uppercase mb-2">Inquiry Detail</span>
+                  <h3 className="text-3xl font-serif text-stone-900">{viewingInquiry.fullName}</h3>
+                  <p className="text-stone-500">{viewingInquiry.email}</p>
+                </div>
+                <button onClick={() => setViewingInquiry(null)} className="p-2 hover:bg-stone-100 rounded-full transition-colors text-stone-400">
+                  <X size={24} />
+                </button>
+              </div>
+
+              <div className="grid grid-cols-2 gap-8 mb-10 border-b border-stone-100 pb-10">
+                <div>
+                  <label className="text-[10px] font-bold text-stone-400 uppercase block mb-1">Company</label>
+                  <p className="text-stone-900 font-medium">{viewingInquiry.companyName || 'Not specified'}</p>
+                </div>
+                <div>
+                  <label className="text-[10px] font-bold text-stone-400 uppercase block mb-1">Interest Type</label>
+                  <p className="text-stone-900 font-medium">{viewingInquiry.type}</p>
+                </div>
+                <div>
+                  <label className="text-[10px] font-bold text-stone-400 uppercase block mb-1">Received On</label>
+                  <p className="text-stone-900 font-medium">{viewingInquiry.createdAt?.toDate().toLocaleString()}</p>
+                </div>
+                <div>
+                  <label className="text-[10px] font-bold text-stone-400 uppercase block mb-1">Current Status</label>
+                  <p className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
+                    viewingInquiry.status === 'new' ? 'bg-amber-100 text-amber-700' : 
+                    viewingInquiry.status === 'replied' ? 'bg-blue-100 text-blue-700' : 'bg-emerald-100 text-emerald-700'
+                  }`}>
+                    {viewingInquiry.status}
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <label className="text-[10px] font-bold text-stone-400 uppercase block">Message Content</label>
+                <div className="bg-stone-50 p-6 rounded-2xl border border-stone-100">
+                  <p className="text-stone-700 leading-relaxed whitespace-pre-wrap">{viewingInquiry.message}</p>
+                </div>
+              </div>
+
+              <div className="mt-10 flex gap-4">
+                <a 
+                  href={`mailto:${viewingInquiry.email}?subject=Reply to Inquiry - Yasida Corporation&body=Dear ${viewingInquiry.fullName},%0D%0A%0D%0AThank you for your inquiry about ${viewingInquiry.type}.%0D%0A%0D%0AYour message:%0D%0A"${viewingInquiry.message}"%0D%0A%0D%0A---%0D%0A%0D%0A`}
+                  onClick={() => {
+                    if (viewingInquiry.status === 'new') {
+                      updateStatus(viewingInquiry.id!, 'replied');
+                      setViewingInquiry({...viewingInquiry, status: 'replied'});
+                    }
+                  }}
+                  className="flex-1 py-4 bg-stone-900 text-white rounded-xl font-bold hover:bg-stone-800 transition-all shadow-lg flex items-center justify-center gap-2"
+                >
+                  <Mail size={20} /> Reply via Email
+                </a>
+                {viewingInquiry.status === 'new' && (
+                  <button 
+                    onClick={() => { updateStatus(viewingInquiry.id!, 'replied'); setViewingInquiry({...viewingInquiry, status: 'replied'}); }}
+                    className="flex-1 py-4 bg-emerald-800 text-white rounded-xl font-bold hover:bg-emerald-900 transition-all shadow-lg"
+                  >
+                    Mark as Replied
+                  </button>
+                )}
+                <button 
+                  onClick={() => setViewingInquiry(null)}
+                  className="flex-[0.5] py-4 border border-stone-200 rounded-xl font-bold text-stone-600 hover:bg-stone-50 transition-all"
+                >
+                  Close
+                </button>
+              </div>
             </motion.div>
           </div>
         )}
