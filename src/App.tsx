@@ -23,6 +23,7 @@ import {
   LogOut,
   LayoutDashboard,
   MessageSquare,
+  MessageCircle,
   Package,
   CheckCircle,
   Clock,
@@ -90,13 +91,13 @@ const translations = {
     connect: "Connect",
     heritage: "Our Heritage",
     heritage_title: "Empowering Traditional Indonesian Spices for the Global Stage.",
-    heritage_p1: "Nusantara Long Pepper began as a collective of local farmers in East Java. Recognizing the unique quality of Javanese Long Pepper (Cabe Jamu) in our region, we transformed from small-scale suppliers into a professional export entity.",
+    heritage_p1: "Nusantara Long Pepper began as a collective of local farmers in West Java. Recognizing the unique quality of Javanese Long Pepper (Cabe Jamu) in our region, we transformed from small-scale suppliers into a professional export entity.",
     heritage_p2: "Our mission is simple: To provide the international pharmaceutical, food, and beverage industries with a reliable, high-volume source of authentic Indonesian spices while ensuring fair trade for our farming communities.",
     quality_approach: "Quality First Approach",
     quality_p1: "From the fertile soils of Java to our modern processing facilities, every step is monitored. We use solar-drying combined with mechanical moisture control to preserve the essential oils and piperine levels.",
     quality_p2: "Our facilities are registered and comply with global food safety guidelines, ensuring that our products arrive at your destination in perfect condition.",
     authentic_origin: "Authentic Origin",
-    authentic_origin_desc: "Sourced exclusively from the unique micro-climates of East Java and Madura.",
+    authentic_origin_desc: "Sourced exclusively from the unique micro-climates of West Java.",
     scientific_assurance: "Scientific Assurance",
     scientific_assurance_desc: "Regular laboratory testing for moisture, ash content, and chemical compounds.",
     scale_reliability: "Scale Reliability",
@@ -135,13 +136,13 @@ const translations = {
     connect: "Hubungi Kami",
     heritage: "Warisan Kami",
     heritage_title: "Memberdayakan Rempah Tradisional Indonesia untuk Panggung Global.",
-    heritage_p1: "Nusantara Long Pepper berawal sebagai kolektif petani lokal di Jawa Timur. Menyadari kualitas unik Lada Panjang Jawa (Cabe Jamu) di wilayah kami, kami bertransformasi dari pemasok skala kecil menjadi entitas ekspor profesional.",
+    heritage_p1: "Nusantara Long Pepper berawal sebagai kolektif petani lokal di Jawa Barat. Menyadari kualitas unik Lada Panjang Jawa (Cabe Jamu) di wilayah kami, kami bertransformasi dari pemasok skala kecil menjadi entitas ekspor profesional.",
     heritage_p2: "Misi kami sederhana: Menyediakan sumber Lada Panjang Indonesia yang otentik dan bervolume tinggi untuk industri farmasi, makanan, dan minuman internasional sambil memastikan perdagangan yang adil bagi komunitas petani kami.",
     quality_approach: "Pendekatan Kualitas Utama",
     quality_p1: "Dari tanah subur Jawa hingga fasilitas pemrosesan modern kami, setiap langkah dipantau. Kami menggunakan pengeringan matahari yang dikombinasikan dengan kontrol kelembaban mekanis untuk menjaga minyak esensial dan tingkat piperin.",
     quality_p2: "Fasilitas kami terdaftar dan mematuhi pedoman keamanan pangan global, memastikan produk kami tiba di tujuan dalam kondisi sempurna.",
     authentic_origin: "Asal Otentik",
-    authentic_origin_desc: "Bersumber secara eksklusif dari iklim mikro unik di Jawa Timur dan Madura.",
+    authentic_origin_desc: "Bersumber secara eksklusif dari iklim mikro unik di Jawa Barat.",
     scientific_assurance: "Jaminan Ilmiah",
     scientific_assurance_desc: "Pengujian laboratorium rutin untuk kelembaban, kadar abu, dan senyawa kimia.",
     scale_reliability: "Keandalan Skala",
@@ -320,15 +321,15 @@ const Footer = ({ setPage, settings }: { setPage: (p: Page) => void, settings: a
             <div className="flex flex-col space-y-4 text-sm">
               <div className="flex items-start gap-3">
                 <MapPin size={18} className="text-emerald-500 shrink-0" />
-                <span>Surabaya, East Java, Indonesia</span>
+                <span>Ciamis, West Java, Indonesia</span>
               </div>
               <div className="flex items-center gap-3">
                 <Mail size={18} className="text-emerald-500 shrink-0" />
-                <span>export@nusantarapepper.com</span>
+                <span>yasidaifada@gmail.com</span>
               </div>
               <div className="flex items-center gap-3">
-                <Phone size={18} className="text-emerald-500 shrink-0" />
-                <span>+62 (31) 500-1234</span>
+                <MessageCircle size={18} className="text-emerald-500 shrink-0" />
+                <span>+6281216936231</span>
               </div>
             </div>
           </div>
@@ -361,7 +362,7 @@ const Home = ({ setPage, settings, t }: { setPage: (p: Page) => void, settings: 
     },
     {
       title: t.home_slide3_title || "Sustainable Spice Supply Chain",
-      description: t.home_slide3_desc || "Empowering local cooperatives in East Java while preserving traditional farming heritage for a resilient global spice market.",
+      description: t.home_slide3_desc || "Empowering local cooperatives in West Java while preserving traditional farming heritage for a resilient global spice market.",
       image: "https://picsum.photos/seed/pepper3/1920/1080",
       accent: "text-stone-800"
     }
@@ -381,62 +382,64 @@ const Home = ({ setPage, settings, t }: { setPage: (p: Page) => void, settings: 
 
   useEffect(() => {
     if (slides.length === 0) return;
+    if (currentSlide >= slides.length) {
+      setCurrentSlide(0);
+    }
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, [slides]);
+  }, [slides, currentSlide]);
 
-  if (slides.length === 0 && slides === null) return null; // Wait for initial fetch or default
+  if (slides.length === 0) return <div className="min-h-screen bg-stone-50" />; 
+
+  const activeSlide = slides[currentSlide] || slides[0] || {};
+  if (!activeSlide.image) return <div className="min-h-screen bg-stone-50" />;
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       {/* Hero Slider Section */}
       <section className="pt-20 bg-stone-50 overflow-hidden relative min-h-[600px] flex items-center">
-        {slides.length > 0 && (
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentSlide}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1 }}
-              className="absolute inset-0 z-0"
-            >
-              <div className="absolute inset-0 bg-white/60 md:bg-transparent md:bg-gradient-to-r md:from-stone-50 md:via-stone-50/80 md:to-transparent z-10" />
-              <img 
-                src={slides[currentSlide].image} 
-                alt="Slide Background" 
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
-              />
-            </motion.div>
-          </AnimatePresence>
-        )}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+            className="absolute inset-0 z-0"
+          >
+            <div className="absolute inset-0 bg-white/60 md:bg-transparent md:bg-gradient-to-r md:from-stone-50 md:via-stone-50/80 md:to-transparent z-10" />
+            <img 
+              src={activeSlide.image} 
+              alt="Slide Background" 
+              className="w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+          </motion.div>
+        </AnimatePresence>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full">
           <div className="max-w-2xl">
-            {slides.length > 0 && (
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentSlide}
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -30, opacity: 0 }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                >
-                  <h1 className="text-5xl md:text-7xl font-serif font-medium text-stone-900 leading-[1.1] mb-8">
-                    {slides[currentSlide].title.split(" ").slice(0, -3).join(" ")} <br />
-                    <span className={`${slides[currentSlide].accent || 'text-emerald-800'} italic`}>
-                      {slides[currentSlide].title.split(" ").slice(-3).join(" ")}
-                    </span>
-                  </h1>
-                  <p className="text-lg md:text-xl text-stone-700 leading-relaxed mb-10 max-w-2xl">
-                    {slides[currentSlide].description}
-                  </p>
-                </motion.div>
-              </AnimatePresence>
-            )}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentSlide}
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -30, opacity: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              >
+                <h1 className="text-5xl md:text-7xl font-serif font-medium text-stone-900 leading-[1.1] mb-8">
+                  {(activeSlide.title || "").split(" ").slice(0, -3).join(" ")} <br />
+                  <span className={`${activeSlide.accent || 'text-emerald-800'} italic`}>
+                    {(activeSlide.title || "").split(" ").slice(-3).join(" ")}
+                  </span>
+                </h1>
+                <p className="text-lg md:text-xl text-stone-700 leading-relaxed mb-10 max-w-2xl">
+                  {activeSlide.description}
+                </p>
+              </motion.div>
+            </AnimatePresence>
             
             <motion.div 
               initial={{ y: 20, opacity: 0 }}
@@ -617,7 +620,7 @@ const Products = ({ t }: { t: any }) => (
                 { label: 'Scientific Name', value: 'Piper retrofractum Vahl' },
                 { label: 'Common Name', value: 'Javanese Long Pepper / Cabe Jamu' },
                 { label: 'Form', value: 'Whole Dried Fruit' },
-                { label: 'Origin', value: 'East Java, Indonesia' },
+                { label: 'Origin', value: 'West Java, Indonesia' },
                 { label: 'Moisture Level', value: '10% - 12% Max' },
                 { label: 'Admixture / Purity', value: '0.5% Max (99.5% Pure)' },
                 { label: 'Color', value: 'Dark Brown to Blackish' },
@@ -692,7 +695,7 @@ const ExportProcedure = ({ t }: { t: any }) => (
               <ChevronRight className="text-emerald-600 shrink-0 mt-1" size={16} />
               <div>
                 <p className="font-medium text-stone-900">Incoterms 2020</p>
-                <p className="text-sm">FOB (Tanjung Perak, Surabaya), CNF, or CIF terms are available based on preference.</p>
+                <p className="text-sm">FOB (Tanjung Priok, Jakarta), CNF, or CIF terms are available based on preference.</p>
               </div>
             </li>
             <li className="flex gap-3">
@@ -816,7 +819,7 @@ const Contact = ({ t }: { t: any }) => {
                  <Globe className="text-emerald-700" size={24} />
                  <div>
                    <h4 className="font-medium text-stone-900">{t.connect}</h4>
-                   <p className="text-stone-500 text-sm">Industrial Hub Blok C, Surabaya, East Java, ID</p>
+                   <p className="text-stone-500 text-sm">Ciamis, West Java, Indonesia</p>
                  </div>
               </div>
               <div className="p-6 bg-stone-50 rounded-xl border border-stone-100 flex gap-4">
