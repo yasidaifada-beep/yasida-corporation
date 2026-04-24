@@ -66,18 +66,112 @@ interface InquiryData {
   createdAt: any;
 }
 
+// --- Translations ---
+const translations = {
+  en: {
+    home: "Home",
+    about: "About Us",
+    products: "Our Products",
+    export: "Export Procedure",
+    inquiry: "Inquiry",
+    admin: "Admin",
+    explore_products: "Explore Products",
+    request_sample: "Request a Sample",
+    premium_grade: "Premium Grade Only",
+    premium_grade_desc: "We strictly hand-pick crops to ensure maximum moisture control and purity levels that exceed international standards.",
+    direct_farm: "Direct Farm Sourcing",
+    direct_farm_desc: "Our roots in the farming community allow us to maintain 100% traceability and provide competitive B2B direct pricing.",
+    sustainable: "Sustainable Growth",
+    sustainable_desc: "Ethical farming practices that protect our soil and empower local cooperatives for a resilient spice supply chain.",
+    growing_process: "Our Growing Process",
+    growing_process_desc: "Take a closer look at our traditional farming methods and the high standard of processing that makes our Long Pepper unique.",
+    quick_links: "Quick Links",
+    certificates: "Certificates",
+    connect: "Connect",
+    heritage: "Our Heritage",
+    heritage_title: "Empowering Traditional Indonesian Spices for the Global Stage.",
+    heritage_p1: "Nusantara Long Pepper began as a collective of local farmers in East Java. Recognizing the unique quality of Javanese Long Pepper (Cabe Jamu) in our region, we transformed from small-scale suppliers into a professional export entity.",
+    heritage_p2: "Our mission is simple: To provide the international pharmaceutical, food, and beverage industries with a reliable, high-volume source of authentic Indonesian spices while ensuring fair trade for our farming communities.",
+    quality_approach: "Quality First Approach",
+    quality_p1: "From the fertile soils of Java to our modern processing facilities, every step is monitored. We use solar-drying combined with mechanical moisture control to preserve the essential oils and piperine levels.",
+    quality_p2: "Our facilities are registered and comply with global food safety guidelines, ensuring that our products arrive at your destination in perfect condition.",
+    authentic_origin: "Authentic Origin",
+    authentic_origin_desc: "Sourced exclusively from the unique micro-climates of East Java and Madura.",
+    scientific_assurance: "Scientific Assurance",
+    scientific_assurance_desc: "Regular laboratory testing for moisture, ash content, and chemical compounds.",
+    scale_reliability: "Scale Reliability",
+    scale_reliability_desc: "Capable of supplying up to 50 metric tons monthly through our farmer networks.",
+    product_specs: "Product Specifications",
+    product_desc: "The Javanese Long Pepper (Piper retrofractum Vahl) is prized for its pungent heat and sweet, herbal undertones.",
+    technical_datasheet: "Technical Datasheet",
+    standard_package: "Standard Document Package",
+    partnership_title: "Start a Partnership",
+    partnership_desc: "For volume inquiries, sample requests, or technical questionnaires, please fill out the form below. Our export desk will contact you within 24 business hours.",
+    sending: "Sending...",
+    send_inquiry: "Send Inquiry",
+    language: "Website Language",
+    en_lang: "English",
+    id_lang: "Indonesia"
+  },
+  id: {
+    home: "Beranda",
+    about: "Tentang Kami",
+    products: "Produk Kami",
+    export: "Prosedur Ekspor",
+    inquiry: "Pertanyaan",
+    admin: "Admin",
+    explore_products: "Jelajahi Produk",
+    request_sample: "Minta Sampel",
+    premium_grade: "Hanya Kualitas Premium",
+    premium_grade_desc: "Kami memilih tanaman secara ketat untuk memastikan kontrol kelembaban maksimum dan tingkat kemurnian yang melampaui standar internasional.",
+    direct_farm: "Sumber Langsung dari Petani",
+    direct_farm_desc: "Akar kami di komunitas petani memungkinkan kami untuk mempertahankan keterlacakan 100% dan memberikan harga B2B langsung yang kompetitif.",
+    sustainable: "Pertumbuhan Berkelanjutan",
+    sustainable_desc: "Praktik pertanian etis yang melindungi tanah kami dan memberdayakan koperasi lokal untuk rantai pasokan rempah yang tangguh.",
+    growing_process: "Proses Penanaman Kami",
+    growing_process_desc: "Lihat lebih dekat metode pertanian tradisional kami dan standar tinggi pemrosesan yang membuat Lada Panjang kami unik.",
+    quick_links: "Tautan Cepat",
+    certificates: "Sertifikat",
+    connect: "Hubungi Kami",
+    heritage: "Warisan Kami",
+    heritage_title: "Memberdayakan Rempah Tradisional Indonesia untuk Panggung Global.",
+    heritage_p1: "Nusantara Long Pepper berawal sebagai kolektif petani lokal di Jawa Timur. Menyadari kualitas unik Lada Panjang Jawa (Cabe Jamu) di wilayah kami, kami bertransformasi dari pemasok skala kecil menjadi entitas ekspor profesional.",
+    heritage_p2: "Misi kami sederhana: Menyediakan sumber Lada Panjang Indonesia yang otentik dan bervolume tinggi untuk industri farmasi, makanan, dan minuman internasional sambil memastikan perdagangan yang adil bagi komunitas petani kami.",
+    quality_approach: "Pendekatan Kualitas Utama",
+    quality_p1: "Dari tanah subur Jawa hingga fasilitas pemrosesan modern kami, setiap langkah dipantau. Kami menggunakan pengeringan matahari yang dikombinasikan dengan kontrol kelembaban mekanis untuk menjaga minyak esensial dan tingkat piperin.",
+    quality_p2: "Fasilitas kami terdaftar dan mematuhi pedoman keamanan pangan global, memastikan produk kami tiba di tujuan dalam kondisi sempurna.",
+    authentic_origin: "Asal Otentik",
+    authentic_origin_desc: "Bersumber secara eksklusif dari iklim mikro unik di Jawa Timur dan Madura.",
+    scientific_assurance: "Jaminan Ilmiah",
+    scientific_assurance_desc: "Pengujian laboratorium rutin untuk kelembaban, kadar abu, dan senyawa kimia.",
+    scale_reliability: "Keandalan Skala",
+    scale_reliability_desc: "Mampu menyuplai hingga 50 metrik ton setiap bulan melalui jaringan petani kami.",
+    product_specs: "Spesifikasi Produk",
+    product_desc: "Lada Panjang Jawa (Piper retrofractum Vahl) dihargai karena rasa pedasnya dan aroma herbal yang manis.",
+    technical_datasheet: "Lembar Data Teknis",
+    standard_package: "Paket Dokumen Standar",
+    partnership_title: "Mulai Kemitraan",
+    partnership_desc: "Untuk pertanyaan volume, permintaan sampel, atau kuesioner teknis, silakan isi formulir di bawah ini. Meja ekspor kami akan menghubungi Anda dalam waktu 24 jam kerja.",
+    sending: "Mengirim...",
+    send_inquiry: "Kirim Pertanyaan",
+    language: "Bahasa Situs Web",
+    en_lang: "Inggris",
+    id_lang: "Indonesia"
+  }
+};
+
 // --- Components ---
 
-const Navbar = ({ currentPage, setPage, user }: { currentPage: Page, setPage: (p: Page) => void, user: User | null }) => {
+const Navbar = ({ currentPage, setPage, user, t }: { currentPage: Page, setPage: (p: Page) => void, user: User | null, t: any }) => {
   const [isOpen, setIsOpen] = useState(false);
   const isAdmin = user?.email === 'pramukapattimura@gmail.com' || user?.email === 'min8ciamis@gmail.com' || user?.email === 'yasidaifada@gmail.com';
 
   const navItems: { label: string; value: Page }[] = [
-    { label: 'Home', value: 'home' },
-    { label: 'About Us', value: 'about' },
-    { label: 'Our Products', value: 'products' },
-    { label: 'Export Procedure', value: 'export' },
-    { label: 'Inquiry', value: 'contact' },
+    { label: t.home, value: 'home' },
+    { label: t.about, value: 'about' },
+    { label: t.products, value: 'products' },
+    { label: t.export, value: 'export' },
+    { label: t.inquiry, value: 'contact' },
   ];
 
   return (
@@ -85,7 +179,7 @@ const Navbar = ({ currentPage, setPage, user }: { currentPage: Page, setPage: (p
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           <div className="flex items-center cursor-pointer gap-3" onClick={() => setPage('home')}>
-            <img src="/src/logo.png" alt="Yasida Logo" className="h-12 w-auto object-contain" onError={(e) => (e.currentTarget.style.display = 'none')} />
+            <img src="https://photos.fife.usercontent.google.com/pw/AP1GczNCeb_D4qGRaED3LbpEy5asljqrJxOukS9FoLII5CyyxYDNUv-Ci5W6=w1162-h633-s-no-gm?authuser=0" alt="Yasida Logo" className="h-12 w-auto object-contain" referrerPolicy="no-referrer" />
             <div className="flex flex-col leading-tight">
               <span className="text-xl font-serif font-bold tracking-tighter text-emerald-900">YASIDA</span>
               <span className="text-xl font-serif font-light text-stone-500">CORPORATION</span>
@@ -97,8 +191,9 @@ const Navbar = ({ currentPage, setPage, user }: { currentPage: Page, setPage: (p
             {navItems.map((item) => (
               <button
                 key={item.value}
+                id={`nav-item-${item.value}`}
                 onClick={() => setPage(item.value)}
-                className={`text-sm font-medium transition-colors ${
+                className={`text-sm font-medium transition-colors cursor-pointer ${
                   currentPage === item.value ? 'text-emerald-700 underline underline-offset-8' : 'text-stone-600 hover:text-emerald-600'
                 }`}
               >
@@ -107,18 +202,19 @@ const Navbar = ({ currentPage, setPage, user }: { currentPage: Page, setPage: (p
             ))}
             {isAdmin && (
               <button
+                id="nav-admin-dashboard"
                 onClick={() => setPage('dashboard')}
-                className="flex items-center gap-2 text-sm font-bold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full"
+                className="flex items-center gap-2 text-sm font-bold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full cursor-pointer"
               >
-                <LayoutDashboard size={14} /> Admin
+                <LayoutDashboard size={14} /> {t.admin}
               </button>
             )}
             {!user ? (
-               <button onClick={() => setPage('admin')} className="text-stone-400 hover:text-emerald-600 transition-colors">
+               <button id="nav-login" onClick={() => setPage('admin')} className="text-stone-400 hover:text-emerald-600 transition-colors cursor-pointer">
                  <Lock size={18} />
                </button>
             ) : (
-              <button onClick={() => signOut(auth)} className="text-stone-400 hover:text-red-500 transition-colors">
+              <button id="nav-logout" onClick={() => signOut(auth)} className="text-stone-400 hover:text-red-500 transition-colors cursor-pointer">
                 <LogOut size={18} />
               </button>
             )}
@@ -171,7 +267,7 @@ const Navbar = ({ currentPage, setPage, user }: { currentPage: Page, setPage: (p
   );
 };
 
-const Footer = ({ setPage, settings }: { setPage: (p: Page) => void, settings: any }) => {
+const Footer = ({ setPage, settings, t }: { setPage: (p: Page) => void, settings: any, t: any }) => {
   return (
     <footer className="bg-stone-900 text-stone-300 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -182,7 +278,7 @@ const Footer = ({ setPage, settings }: { setPage: (p: Page) => void, settings: a
               <span className="text-2xl font-serif font-light text-stone-500 ml-1">CORPORATION</span>
             </div>
             <p className="text-sm leading-relaxed text-stone-400 mb-8">
-              Under YASIDA CORPORATION, Nusantara Pepper is Indonesia's leading supplier of premium Javanese Long Pepper. Bridging traditional heritage with international standard excellence.
+              {t.premium_grade_desc}
             </p>
             <div className="flex gap-4">
               {settings?.facebook && (
@@ -203,16 +299,16 @@ const Footer = ({ setPage, settings }: { setPage: (p: Page) => void, settings: a
             </div>
           </div>
           <div>
-            <h4 className="text-white font-medium mb-6">Quick Links</h4>
+            <h4 className="text-white font-medium mb-6">{t.quick_links}</h4>
             <ul className="space-y-4 text-sm">
-              <li className="cursor-pointer hover:text-white" onClick={() => setPage('about')}>About Us</li>
-              <li className="cursor-pointer hover:text-white" onClick={() => setPage('products')}>Our Products</li>
-              <li className="cursor-pointer hover:text-white" onClick={() => setPage('export')}>Export Terms</li>
-              <li className="cursor-pointer hover:text-white" onClick={() => setPage('contact')}>Contact</li>
+              <li className="cursor-pointer hover:text-white" onClick={() => setPage('about')}>{t.about}</li>
+              <li className="cursor-pointer hover:text-white" onClick={() => setPage('products')}>{t.products}</li>
+              <li className="cursor-pointer hover:text-white" onClick={() => setPage('export')}>{t.export}</li>
+              <li className="cursor-pointer hover:text-white" onClick={() => setPage('contact')}>{t.inquiry}</li>
             </ul>
           </div>
           <div>
-            <h4 className="text-white font-medium mb-6">Certificates</h4>
+            <h4 className="text-white font-medium mb-6">{t.certificates}</h4>
             <ul className="space-y-4 text-sm">
               <li className="flex items-center gap-2"><Award size={16} className="text-emerald-500" /> Phytosanitary Certified</li>
               <li className="flex items-center gap-2"><Award size={16} className="text-emerald-500" /> Origin Verification</li>
@@ -220,7 +316,7 @@ const Footer = ({ setPage, settings }: { setPage: (p: Page) => void, settings: a
             </ul>
           </div>
           <div>
-            <h4 className="text-white font-medium mb-6">Connect</h4>
+            <h4 className="text-white font-medium mb-6">{t.connect}</h4>
             <div className="flex flex-col space-y-4 text-sm">
               <div className="flex items-start gap-3">
                 <MapPin size={18} className="text-emerald-500 shrink-0" />
@@ -238,7 +334,7 @@ const Footer = ({ setPage, settings }: { setPage: (p: Page) => void, settings: a
           </div>
         </div>
         <div className="mt-16 pt-8 border-t border-stone-800 text-xs text-stone-500 text-center">
-          © {new Date().getFullYear()} Nusantara Long Pepper. All rights reserved. Registered Export Supplier ID: ID-JX-0988.
+          © {new Date().getFullYear()} Yasida Corporation. All rights reserved.
         </div>
       </div>
     </footer>
@@ -247,25 +343,25 @@ const Footer = ({ setPage, settings }: { setPage: (p: Page) => void, settings: a
 
 // --- Page Components ---
 
-const Home = ({ setPage, settings }: { setPage: (p: Page) => void, settings: any }) => {
+const Home = ({ setPage, settings, t }: { setPage: (p: Page) => void, settings: any, t: any }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slides, setSlides] = useState<any[]>([]);
   const defaultSlides = [
     {
-      title: "Sourcing the Finest Javanese Long Pepper",
-      description: "Direct from Indonesian farmers to the global market. We provide premium grade Javanese Long Pepper (Piper retrofractum Vahl) with unmatched chemical purity.",
+      title: t.home_slide1_title || "Sourcing the Finest Javanese Long Pepper",
+      description: t.home_slide1_desc || "Direct from Indonesian farmers to the global market. We provide premium grade Javanese Long Pepper (Piper retrofractum Vahl) with unmatched chemical purity.",
       image: "https://picsum.photos/seed/pepper1/1920/1080",
       accent: "text-emerald-800"
     },
     {
-      title: "Excellence in Agricultural Export",
-      description: "Certified quality standards meeting international pharmaceutical and food grade requirements. Hand-picked and sun-dried for perfection.",
+      title: t.home_slide2_title || "Excellence in Agricultural Export",
+      description: t.home_slide2_desc || "Certified quality standards meeting international pharmaceutical and food grade requirements. Hand-picked and sun-dried for perfection.",
       image: "https://picsum.photos/seed/pepper2/1920/1080",
       accent: "text-amber-800"
     },
     {
-      title: "Sustainable Spice Supply Chain",
-      description: "Empowering local cooperatives in East Java while preserving traditional farming heritage for a resilient global spice market.",
+      title: t.home_slide3_title || "Sustainable Spice Supply Chain",
+      description: t.home_slide3_desc || "Empowering local cooperatives in East Java while preserving traditional farming heritage for a resilient global spice market.",
       image: "https://picsum.photos/seed/pepper3/1920/1080",
       accent: "text-stone-800"
     }
@@ -349,16 +445,18 @@ const Home = ({ setPage, settings }: { setPage: (p: Page) => void, settings: any
               className="flex flex-col sm:flex-row gap-4"
             >
               <button 
+                id="hero-explore-btn"
                 onClick={() => setPage('products')}
-                className="px-8 py-4 bg-emerald-800 text-white font-medium flex items-center justify-center gap-2 hover:bg-emerald-900 transition-all shadow-lg"
+                className="px-8 py-4 bg-emerald-800 text-white font-medium flex items-center justify-center gap-2 hover:bg-emerald-900 transition-all shadow-lg cursor-pointer"
               >
-                Explore Products <ArrowRight size={18} />
+                {t.explore_products} <ArrowRight size={18} />
               </button>
               <button 
+                id="hero-sample-btn"
                 onClick={() => setPage('contact')}
-                className="px-8 py-4 border border-stone-300 bg-white/50 backdrop-blur text-stone-700 font-medium hover:bg-stone-100 transition-all"
+                className="px-8 py-4 border border-stone-300 bg-white/50 backdrop-blur text-stone-700 font-medium hover:bg-stone-100 transition-all cursor-pointer"
               >
-                Request a Sample
+                {t.request_sample}
               </button>
             </motion.div>
 
@@ -386,22 +484,22 @@ const Home = ({ setPage, settings }: { setPage: (p: Page) => void, settings: any
             <div className="w-12 h-12 bg-emerald-100 flex items-center justify-center rounded-full text-emerald-700 mx-auto md:mx-0">
               <ShieldCheck size={24} />
             </div>
-            <h3 className="text-xl font-medium text-stone-900">Premium Grade Only</h3>
-            <p className="text-stone-600 leading-relaxed">We strictly hand-pick crops to ensure maximum moisture control and purity levels that exceed international standards.</p>
+            <h3 className="text-xl font-medium text-stone-900">{t.premium_grade}</h3>
+            <p className="text-stone-600 leading-relaxed">{t.premium_grade_desc}</p>
           </div>
           <div className="space-y-4">
             <div className="w-12 h-12 bg-emerald-100 flex items-center justify-center rounded-full text-emerald-700 mx-auto md:mx-0">
               <Globe size={24} />
             </div>
-            <h3 className="text-xl font-medium text-stone-900">Direct Farm Sourcing</h3>
-            <p className="text-stone-600 leading-relaxed">Our roots in the farming community allow us to maintain 100% traceability and provide competitive B2B direct pricing.</p>
+            <h3 className="text-xl font-medium text-stone-900">{t.direct_farm}</h3>
+            <p className="text-stone-600 leading-relaxed">{t.direct_farm_desc}</p>
           </div>
           <div className="space-y-4">
             <div className="w-12 h-12 bg-emerald-100 flex items-center justify-center rounded-full text-emerald-700 mx-auto md:mx-0">
               <Leaf size={24} />
             </div>
-            <h3 className="text-xl font-medium text-stone-900">Sustainable Growth</h3>
-            <p className="text-stone-600 leading-relaxed">Ethical farming practices that protect our soil and empower local cooperatives for a resilient spice supply chain.</p>
+            <h3 className="text-xl font-medium text-stone-900">{t.sustainable}</h3>
+            <p className="text-stone-600 leading-relaxed">{t.sustainable_desc}</p>
           </div>
         </div>
       </div>
@@ -412,10 +510,10 @@ const Home = ({ setPage, settings }: { setPage: (p: Page) => void, settings: any
       <section className="py-24 bg-stone-50 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center text-center mb-16 px-4">
-            <h2 className="text-3xl md:text-4xl font-serif font-medium text-stone-900 mb-4">Our Growing Process</h2>
+            <h2 className="text-3xl md:text-4xl font-serif font-medium text-stone-900 mb-4">{t.growing_process}</h2>
             <div className="w-20 h-1 bg-emerald-700 mb-6" />
             <p className="text-stone-600 max-w-2xl leading-relaxed">
-              Take a closer look at our traditional farming methods and the high standard of processing that makes our Long Pepper unique.
+              {t.growing_process_desc}
             </p>
           </div>
           <div className="relative aspect-video max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border-8 border-white">
@@ -434,28 +532,28 @@ const Home = ({ setPage, settings }: { setPage: (p: Page) => void, settings: any
   );
 };
 
-const About = () => (
+const About = ({ t }: { t: any }) => (
   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="pt-32 pb-20">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mb-16">
-        <h2 className="text-sm font-medium text-emerald-700 uppercase tracking-widest mb-4">Our Heritage</h2>
-        <h1 className="text-4xl md:text-5xl font-serif font-medium text-stone-900 leading-tight mb-8">Empowering Traditional Indonesian Spices for the Global Stage.</h1>
+        <h2 className="text-sm font-medium text-emerald-700 uppercase tracking-widest mb-4">{t.heritage}</h2>
+        <h1 className="text-4xl md:text-5xl font-serif font-medium text-stone-900 leading-tight mb-8">{t.heritage_title}</h1>
         <p className="text-lg text-stone-600 leading-relaxed mb-6">
-          Nusantara Long Pepper began as a collective of local farmers in East Java. Recognizing the unique quality of Javanese Long Pepper (Cabe Jamu) in our region, we transformed from small-scale suppliers into a professional export entity.
+          {t.heritage_p1}
         </p>
         <p className="text-lg text-stone-600 leading-relaxed">
-          Our mission is simple: To provide the international pharmaceutical, food, and beverage industries with a reliable, high-volume source of authentic Indonesian spices while ensuring fair trade for our farming communities.
+          {t.heritage_p2}
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 py-16 border-t border-stone-200">
         <div>
-          <h3 className="text-2xl font-serif font-medium text-stone-900 mb-4">Quality First Approach</h3>
+          <h3 className="text-2xl font-serif font-medium text-stone-900 mb-4">{t.quality_approach}</h3>
           <p className="text-stone-600 leading-relaxed mb-4">
-            From the fertile soils of Java to our modern processing facilities, every step is monitored. We use solar-drying combined with mechanical moisture control to preserve the essential oils and piperine levels.
+            {t.quality_p1}
           </p>
           <p className="text-stone-600 leading-relaxed">
-            Our facilities are registered and comply with global food safety guidelines, ensuring that our products arrive at your destination in perfect condition.
+            {t.quality_p2}
           </p>
         </div>
         <div className="bg-stone-50 p-8 rounded-lg">
@@ -463,22 +561,22 @@ const About = () => (
             <li className="flex gap-4">
               <span className="text-emerald-700 font-serif text-3xl font-bold">01</span>
               <div>
-                <h4 className="font-medium text-stone-900 mb-1">Authentic Origin</h4>
-                <p className="text-sm text-stone-600">Sourced exclusively from the unique micro-climates of East Java and Madura.</p>
+                <h4 className="font-medium text-stone-900 mb-1">{t.authentic_origin}</h4>
+                <p className="text-sm text-stone-600">{t.authentic_origin_desc}</p>
               </div>
             </li>
             <li className="flex gap-4">
               <span className="text-emerald-700 font-serif text-3xl font-bold">02</span>
               <div>
-                <h4 className="font-medium text-stone-900 mb-1">Scientific Assurance</h4>
-                <p className="text-sm text-stone-600">Regular laboratory testing for moisture, ash content, and chemical compounds.</p>
+                <h4 className="font-medium text-stone-900 mb-1">{t.scientific_assurance}</h4>
+                <p className="text-sm text-stone-600">{t.scientific_assurance_desc}</p>
               </div>
             </li>
             <li className="flex gap-4">
               <span className="text-emerald-700 font-serif text-3xl font-bold">03</span>
               <div>
-                <h4 className="font-medium text-stone-900 mb-1">Scale Reliability</h4>
-                <p className="text-sm text-stone-600">Capable of supplying up to 50 metric tons monthly through our farmer networks.</p>
+                <h4 className="font-medium text-stone-900 mb-1">{t.scale_reliability}</h4>
+                <p className="text-sm text-stone-600">{t.scale_reliability_desc}</p>
               </div>
             </li>
           </ul>
@@ -488,12 +586,12 @@ const About = () => (
   </motion.div>
 );
 
-const Products = () => (
+const Products = ({ t }: { t: any }) => (
   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="pt-32 pb-20">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="mb-16">
-        <h1 className="text-4xl md:text-5xl font-serif font-medium text-stone-900 leading-tight">Product Specifications</h1>
-        <p className="text-stone-600 mt-4 max-w-2xl">The Javanese Long Pepper (Piper retrofractum Vahl) is prized for its pungent heat and sweet, herbal undertones.</p>
+        <h1 className="text-4xl md:text-5xl font-serif font-medium text-stone-900 leading-tight">{t.product_specs}</h1>
+        <p className="text-stone-600 mt-4 max-w-2xl">{t.product_desc}</p>
       </div>
 
       <div className="flex flex-col lg:flex-row gap-16">
@@ -513,7 +611,7 @@ const Products = () => (
         {/* Specs Table */}
         <div className="lg:w-1/2 space-y-12">
           <div>
-            <h3 className="text-2xl font-serif font-medium text-stone-900 mb-6 border-b pb-4">Technical Datasheet</h3>
+            <h3 className="text-2xl font-serif font-medium text-stone-900 mb-6 border-b pb-4">{t.technical_datasheet}</h3>
             <div className="grid grid-cols-1 gap-4">
               {[
                 { label: 'Scientific Name', value: 'Piper retrofractum Vahl' },
@@ -550,7 +648,7 @@ const Products = () => (
   </motion.div>
 );
 
-const ExportProcedure = () => (
+const ExportProcedure = ({ t }: { t: any }) => (
   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="pt-32 pb-20 bg-white">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mb-16">
@@ -629,7 +727,7 @@ const ExportProcedure = () => (
   </motion.div>
 );
 
-const Sustainability = () => (
+const Sustainability = ({ t }: { t: any }) => (
   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="pt-32 pb-20">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -637,7 +735,7 @@ const Sustainability = () => (
           <h2 className="text-sm font-medium text-emerald-700 uppercase tracking-widest mb-4">Core Philosophy</h2>
           <h1 className="text-4xl md:text-5xl font-serif font-medium text-stone-900 leading-tight mb-8">Harvesting for a <br /><span className="italic">Better Future.</span></h1>
           <p className="text-lg text-stone-600 leading-relaxed mb-6">
-            We believe that the quality of our spices is deeply linked to the well-being of our farmers and the health of our environment. Our sustainability initiatives focus on three key pillars:
+            {t.heritage_p1}
           </p>
           <ul className="space-y-6">
             <li className="flex gap-4">
@@ -657,8 +755,8 @@ const Sustainability = () => (
             <li className="flex gap-4">
               <div className="shrink-0 w-10 h-10 bg-emerald-100 flex items-center justify-center rounded-lg text-emerald-800 font-bold">3</div>
               <div>
-                <h4 className="font-medium text-stone-900 mb-1">Traceability</h4>
-                <p className="text-sm text-stone-600">Utilizing batch-coding that allows our buyers to trace each bag back to the specific farmer group.</p>
+                <h4 className="font-medium text-stone-900 mb-1">{t.authentic_origin}</h4>
+                <p className="text-sm text-stone-600">{t.authentic_origin_desc}</p>
               </div>
             </li>
           </ul>
@@ -675,7 +773,7 @@ const Sustainability = () => (
   </motion.div>
 );
 
-const Contact = () => {
+const Contact = ({ t }: { t: any }) => {
   const [formData, setFormData] = useState({
     fullName: '',
     companyName: '',
@@ -709,22 +807,22 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div>
-            <h1 className="text-4xl md:text-5xl font-serif font-medium text-stone-900 mb-6">Start a Partnership</h1>
+            <h1 className="text-4xl md:text-5xl font-serif font-medium text-stone-900 mb-6">{t.partnership_title}</h1>
             <p className="text-lg text-stone-600 leading-relaxed mb-10">
-              For volume inquiries, sample requests, or technical questionnaires, please fill out the form below. Our export desk will contact you within 24 business hours.
+              {t.partnership_desc}
             </p>
             <div className="space-y-6">
               <div className="p-6 bg-stone-50 rounded-xl border border-stone-100 flex gap-4">
                  <Globe className="text-emerald-700" size={24} />
                  <div>
-                   <h4 className="font-medium text-stone-900">Headquarters</h4>
+                   <h4 className="font-medium text-stone-900">{t.connect}</h4>
                    <p className="text-stone-500 text-sm">Industrial Hub Blok C, Surabaya, East Java, ID</p>
                  </div>
               </div>
               <div className="p-6 bg-stone-50 rounded-xl border border-stone-100 flex gap-4">
                  <ShieldCheck className="text-emerald-700" size={24} />
                  <div>
-                   <h4 className="font-medium text-stone-900">Licensed Exporter</h4>
+                   <h4 className="font-medium text-stone-900">{t.certificates}</h4>
                    <p className="text-stone-500 text-sm">Registrar No: 8820-ID-EX-SNI</p>
                  </div>
               </div>
@@ -785,7 +883,7 @@ const Contact = () => {
                 <select 
                   value={formData.type}
                   onChange={(e) => setFormData({...formData, type: e.target.value})}
-                  className="w-full bg-stone-50 border border-stone-200 p-3 rounded focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
+                  className="w-full bg-stone-50 border border-stone-200 p-3 rounded focus:ring-1 focus:ring-emerald-500 outline-none transition-all cursor-pointer"
                 >
                   <option>Trial Sample Shipment</option>
                   <option>Full FCL Inquiry (Metric Tons)</option>
@@ -801,14 +899,14 @@ const Contact = () => {
                   onChange={(e) => setFormData({...formData, message: e.target.value})}
                   rows={4} 
                   className="w-full bg-stone-50 border border-stone-200 p-3 rounded focus:ring-1 focus:ring-emerald-500 outline-none transition-all" 
-                  placeholder="Tell us more about your requirements..."
+                  placeholder={t.product_desc}
                 ></textarea>
               </div>
               <button 
                 disabled={sending}
-                className="w-full py-4 bg-stone-900 text-white font-medium hover:bg-stone-800 transition-all rounded disabled:opacity-50"
+                className="w-full py-4 bg-stone-900 text-white font-medium hover:bg-stone-800 transition-all rounded disabled:opacity-50 cursor-pointer"
               >
-                {sending ? 'Sending...' : 'Send Inquiry'}
+                {sending ? t.sending : t.send_inquiry}
               </button>
             </form>
           </div>
@@ -1107,6 +1205,19 @@ const Dashboard = ({ settings }: { settings: any }) => {
                  />
               </div>
 
+              <div className="space-y-2">
+                 <label className="text-xs font-bold uppercase tracking-wider text-stone-400 flex items-center gap-2">Website Language</label>
+                 <select 
+                   id="setting-language"
+                   value={localSettings.language || 'en'} 
+                   onChange={(e) => setLocalSettings({...localSettings, language: e.target.value})} 
+                   className="w-full bg-stone-50 border border-stone-200 p-3 rounded focus:ring-1 focus:ring-emerald-500 outline-none cursor-pointer"
+                 >
+                   <option value="en">English (Global)</option>
+                   <option value="id">Indonesia (Local)</option>
+                 </select>
+              </div>
+
               <button type="submit" className="w-full py-4 bg-emerald-800 text-white rounded font-medium hover:bg-emerald-900 transition-all mt-6 shadow-lg">
                 Save All Settings
               </button>
@@ -1188,30 +1299,34 @@ export default function App() {
   const renderPage = () => {
     if (!ready) return <div className="h-screen flex items-center justify-center text-stone-400 font-serif">Nusantara Pepper...</div>;
 
+    const t = translations[(settings.language as 'en' | 'id') || 'en'];
+
     switch (page) {
-      case 'home': return <Home setPage={setPage} settings={settings} />;
-      case 'about': return <About />;
-      case 'products': return <Products />;
-      case 'export': return <ExportProcedure />;
-      case 'sustainability': return <Sustainability />;
-      case 'contact': return <Contact />;
+      case 'home': return <Home setPage={setPage} settings={settings} t={t} />;
+      case 'about': return <About t={t} />;
+      case 'products': return <Products t={t} />;
+      case 'export': return <ExportProcedure t={t} />;
+      case 'sustainability': return <Sustainability t={t} />;
+      case 'contact': return <Contact t={t} />;
       case 'admin': return <AdminLogin setPage={setPage} />;
       case 'dashboard': 
         if (user?.email === 'pramukapattimura@gmail.com' || user?.email === 'min8ciamis@gmail.com' || user?.email === 'yasidaifada@gmail.com') return <Dashboard settings={settings} />;
         return <AdminLogin setPage={setPage} />;
-      default: return <Home setPage={setPage} settings={settings} />;
+      default: return <Home setPage={setPage} settings={settings} t={t} />;
     }
   };
 
+  const t = translations[(settings.language as 'en' | 'id') || 'en'];
+
   return (
     <div className="min-h-screen bg-white font-sans text-stone-900 selection:bg-emerald-100 selection:text-emerald-900">
-      <Navbar currentPage={page} setPage={setPage} user={user} />
+      <Navbar currentPage={page} setPage={setPage} user={user} t={t} />
       <main>
         <AnimatePresence mode="wait">
           {renderPage()}
         </AnimatePresence>
       </main>
-      <Footer setPage={setPage} settings={settings} />
+      <Footer setPage={setPage} settings={settings} t={t} />
     </div>
   );
 }

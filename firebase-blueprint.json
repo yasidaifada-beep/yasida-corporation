@@ -52,7 +52,8 @@
         "videoUrl": { "type": "string" },
         "instagram": { "type": "string" },
         "facebook": { "type": "string" },
-        "youtube": { "type": "string" }
+        "youtube": { "type": "string" },
+        "language": { "type": "string", "enum": ["en", "id"] }
       }
     }
   },
